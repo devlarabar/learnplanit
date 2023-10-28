@@ -1,0 +1,38 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<section>
+    <h2>Login</h2>
+
+    {% if logged_in %}
+
+    <p>Hi there, {{ username }}! Looks like you're already logged in! <a href="/">Click here</a> to return to the home
+        page.</p>
+
+    {% else %}
+
+
+
+    <form method="post">
+        {% csrf_token %}
+        {% if form.errors %}
+        {{ form.errors|pluralize }}
+        {% endif %}
+        {% for field in form.visible_fields %}
+        <span>{{ field.label_tag }}</span>
+        {{ field }}
+        {% endfor %}
+        <span>Already have an account? <a class="medfont" href="/login/">Sign in!</a></span>
+        <input id="signupButton" type="submit" name="button" value="Sign Up" />
+    </form>
+
+
+
+    {% endif %}
+
+</section>
+
+{% endblock content %}

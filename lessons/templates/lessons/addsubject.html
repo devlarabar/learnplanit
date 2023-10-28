@@ -1,0 +1,23 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<section>
+    <h2>Add Subject</h2>
+
+    <form action="/lessons/addsubject/" method="POST">
+        {% csrf_token %}
+        <div>
+            {% for field in form.visible_fields %}
+            <span>{{ field.label_tag }}</span>
+            {{ field }}
+            {% endfor %}
+            <input id="subjectButton" type="submit" name="button" value="Add">
+        </div>
+    </form>
+
+</section>
+
+{% endblock content %}

@@ -1,0 +1,16 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<section>
+    <h2>All Lessons</h2>
+    <ul class="lesson-list">
+        {% for lesson in lessons %}
+        <li><a href="/lessons/viewlesson/{{ lesson.id }}">{{ lesson.title }}</a> - by {{ lesson.author.username }}</li>
+        {% endfor %}
+    </ul>
+</section>
+
+{% endblock content %}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<noscript>
+    <div id="nojs">
+        <h1>Please Enable JavaScript</h1>
+        <meta http-equiv="refresh" content="0; url =/help/rules/?nojs=True">
+    </div>
+</noscript>
+
+<head>
+    {% if not title %}
+    <title>LearnPlanit</title>
+    {% else %}
+    <title>LearnPlanit - {{ title }}</title>
+    {% endif %}
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <meta name="viewport" content="width=viewport, user-scalable=yes">
+
+    <!-- <style>
+        :root {
+            --bgcolor: {{ css_variables.bgcolor }};
+            --color: {{ css_variables.color }};
+            --link_color: {{ css_variables.link_color }};
+            --hover_color: {{ css_variables.hover_color }};
+            --grid_head: {{ css_variables.grid_head }};
+            --grid_select: {{ css_variables.grid_select }};
+            --grid_odd: {{ css_variables.grid_odd }};
+            --grid_even: {{ css_variables.grid_even }};
+        }
+        </style> -->
+
+    <link rel="icon" href="{% static 'images/favicon.ico' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/layout.css' %}">
+    <link rel="icon" type="image/png"
+        href="https://cdn.discordapp.com/attachments/818087032303517726/1167898978000572557/earth-icon.png">
+
+</head>
+
+<body>
+
+    <div id="container">
+
+
+
+        {% if logged_in %}
+        {% include 'core/navigation.html' %}
+        {% endif %}
+        <div class="content">
+            <header class="w-full bg-slate-200">
+                <section class="px-24 py-5 flex justify-between items-center;">
+                    <a href="/" class="flex items-center">LearnPlanit</a>
+                    {% if logged_in %}
+                    <span class="flex items-center">Hello, {{ username }}</span>
+                    <form method="POST" action="/logout/">
+                        {% csrf_token %}
+                        <input type="submit" name="button" value="Logout" />
+                    </form>
+                    {% else %}
+                    <a href="/login/">Login</a>
+                    {% endif %}
+                </section>
+            </header>
+            <main class="px-24 py-10">
+                {% block world_top_menu %}{% endblock %}
+                {% block market_menu %}{% endblock %}
+                {% block cssguide_top %}{% endblock %}
+                {% block content %}{% endblock %}
+            </main>
+            <!-- <footer>
+                <section class="px-24 py-5 flex justify-between">
+                    <p>
+                        Copyright 2023 - Lara Alexander
+                    </p>
+                </section>
+            </footer> -->
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<section>
+    <p>Access denied{% if message %}: {{ message }}{% endif %}.</p>
+</section>
+
+{% endblock content %}

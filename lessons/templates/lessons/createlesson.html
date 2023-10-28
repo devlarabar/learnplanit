@@ -1,0 +1,25 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<head>
+    {{ form.media }}
+</head>
+
+<section>
+    <h2>Create Lesson</h2>
+
+    <form action="/lessons/createlesson/" method="POST">
+        {% csrf_token %}
+        {% for field in form.visible_fields %}
+        <span>{{ field.label_tag }}</span>
+        {{ field }}
+        {% endfor %}
+        <input id="lessonButton" type="submit" name="button" value="Create">
+    </form>
+
+</section>
+
+{% endblock content %}

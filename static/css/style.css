@@ -1,0 +1,176 @@
+:root {
+    --primary: #ddd;
+    --border: #ddd;
+    --border-radius: 0rem;
+    --bg-dark: #1D1B22;
+    --bg-dark-hover: #262429;
+    --text-main: #1C1C1C;
+    --text-link: #000000;
+    --text-light: #BABABA;
+    --text-light-hover: #fff;
+    --h3-color: #3B3840;
+}
+
+*,
+*:before,
+*:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    font-size: 1.6rem;
+    overflow: hidden;
+}
+
+#container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.content {
+    width: 100%;
+    height: 99.9vh;
+    overflow: auto;
+    gap: 4rem;
+}
+
+input[type="text"],
+input[type="select"],
+input[type="password"],
+input[type="number"],
+input[type="email"] {
+    padding: 0.6rem 1rem;
+    border-radius: var(--border-radius);
+    border: 2px solid var(--border);
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="button"],
+input[type="submit"],
+button,
+.btn {
+    background: var(--bg-dark);
+    color: var(--text-light);
+    min-width: 10rem;
+    padding: 0.6rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--border-radius);
+    transition: 0.2s ease-in-out;
+}
+
+input[type="button"]:hover,
+input[type="submit"]:hover,
+button:hover,
+a:hover,
+summary:hover,
+.btn:hover {
+    cursor: pointer;
+}
+
+input[type="button"]:hover,
+input[type="submit"]:hover,
+button:hover {
+    background: var(--bg-dark-hover);
+    color: var(--text-light-hover);
+}
+
+form {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+/* Lessons */
+
+.lesson-content img {
+    max-width: 80%;
+    margin: 1rem;
+    margin: auto;
+}
+
+.lesson-list {
+    margin-top: 2rem;
+    padding-left: 1rem;
+    list-style-type: disc;
+}
+
+/* Typography */
+
+h1 {
+    font-size: 3.5rem !important;
+    font-weight: bold !important;
+}
+
+h2 {
+    font-size: 2.5rem !important;
+    font-weight: bold !important;
+}
+
+h3 {
+    font-size: 2.2rem !important;
+    font-weight: bold !important;
+    color: var(--h3-color) !important;
+}
+
+main a {
+    text-decoration: underline;
+    color: var(--text-link);
+}
+
+p {
+    margin: 1rem 0 !important;
+}
+
+.tags-container {
+    font-size: 1.4rem;
+}
+
+/* Accessibility */
+
+input:focus,
+a:focus,
+summary:focus,
+button:focus,
+select:focus {
+    outline: 2px dashed var(--bg-dark-hover);
+    outline-offset: 2px;
+}
+
+/* UI */
+
+.back-btn {
+    background: none;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: flex-start;
+    color: var(--text-main);
+    min-width: auto;
+}
+
+.back-btn:hover {
+    background: none;
+    cursor: pointer;
+    color: var(--text-main);
+}
+
+/* Images */
+
+.landing-img {
+    max-width: 50%;
+}
