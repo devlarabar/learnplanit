@@ -1,0 +1,14 @@
+{
+    "builds": [
+      {
+        "src": "learnplanit/wsgi.py",
+        "use": "@vercel/python"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "learnplanit/wsgi.py"
+      }
+    ]
+}
