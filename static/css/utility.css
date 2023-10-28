@@ -1,0 +1,114 @@
+:root {
+    --lg: 6rem;
+    --md: 4rem;
+    --sm: 2rem;
+    --xs: 1rem;
+    --bg-slate-200: #E2E8F0;
+    --text-subtle-color: #808080;
+    --text-subtle-color-hover: #929292;
+}
+
+/* Flex */
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.justify-center {
+    justify-items: center;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.items-baseline {
+    align-items: baseline;
+}
+
+/* Flex Gap */
+
+.gap-1 {
+    gap: 1rem;
+}
+
+.gap-2 {
+    gap: 2rem;
+}
+
+.gap-3 {
+    gap: 3rem;
+}
+
+.gap-4 {
+    gap: 4rem;
+}
+
+/* Spacing */
+
+.px-lg {
+    padding-left: var(--lg);
+    padding-right: var(--lg);
+}
+
+.py-md {
+    padding-top: var(--md);
+    padding-bottom: var(--md);
+}
+
+.py-sm {
+    padding-top: var(--sm);
+    padding-bottom: var(--sm);
+}
+
+.mb-1 {
+    margin-bottom: 1rem;
+}
+
+.mb-2 {
+    margin-bottom: 2rem;
+}
+
+.mt-2 {
+    margin-top: 2rem;
+}
+
+/* Width & Height */
+
+.w-full {
+    width: 100%;
+}
+
+.w-2 {
+    width: 2rem;
+}
+
+.h-2 {
+    height: 2rem;
+}
+
+/* Backgrounds */
+
+.bg-slate-200 {
+    background-color: var(--bg-slate-200);
+}
+
+/* Typography */
+
+.text-subtle {
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--text-subtle-color);
+}
+
+a.text-subtle:hover {
+    color: var(--text-subtle-color-hover);
+}

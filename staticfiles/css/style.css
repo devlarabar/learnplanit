@@ -9,6 +9,7 @@
     --text-light: #BABABA;
     --text-light-hover: #fff;
     --h3-color: #3B3840;
+    --font-main: "Arial", "sans-serif";
 }
 
 *,
@@ -24,8 +25,11 @@ html {
 }
 
 body {
+    padding: 0;
+    margin: 0;
     font-size: 1.6rem;
     overflow: hidden;
+    font-family: var(--font-main);
 }
 
 #container {
@@ -63,12 +67,13 @@ button,
     background: var(--bg-dark);
     color: var(--text-light);
     min-width: 10rem;
-    padding: 0.6rem 1rem;
+    padding: 1rem 1.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: var(--border-radius);
     transition: 0.2s ease-in-out;
+    border: none;
 }
 
 input[type="button"]:hover,
@@ -99,8 +104,8 @@ form {
 
 .lesson-content img {
     max-width: 80%;
-    margin: 1rem;
-    margin: auto;
+    margin: 1rem auto;
+    display: block;
 }
 
 .lesson-list {
@@ -112,19 +117,29 @@ form {
 /* Typography */
 
 h1 {
-    font-size: 3.5rem !important;
-    font-weight: bold !important;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--text-main);
+    margin: 0;
+}
+
+h1 a {
+    color: var(--text-main);
+}
+
+h1 a:hover {
+    color: var(--h3-color);
 }
 
 h2 {
-    font-size: 2.5rem !important;
-    font-weight: bold !important;
+    font-size: 2.5rem;
+    font-weight: bold;
 }
 
 h3 {
-    font-size: 2.2rem !important;
-    font-weight: bold !important;
-    color: var(--h3-color) !important;
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: var(--h3-color);
 }
 
 main a {
@@ -133,7 +148,7 @@ main a {
 }
 
 p {
-    margin: 1rem 0 !important;
+    margin: 1rem 0;
 }
 
 .tags-container {
@@ -161,6 +176,7 @@ select:focus {
     justify-content: flex-start;
     color: var(--text-main);
     min-width: auto;
+    padding: 0.2rem;
 }
 
 .back-btn:hover {
@@ -172,5 +188,19 @@ select:focus {
 /* Images */
 
 .landing-img {
-    max-width: 50%;
+    display: block;
+    width: 50%;
+}
+
+/* Lists */
+
+li {
+    margin: 1rem;
+}
+
+/* Media Queries */
+@media screen and (max-width: 678px) {
+    .landing-img {
+        width: 100%;
+    }
 }

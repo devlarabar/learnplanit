@@ -15,7 +15,6 @@
     {% else %}
     <title>LearnPlanit - {{ title }}</title>
     {% endif %}
-    <script src="https://cdn.tailwindcss.com"></script>
 
     <meta name="viewport" content="width=viewport, user-scalable=yes">
 
@@ -35,6 +34,7 @@
     <link rel="icon" href="{% static 'images/favicon.ico' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/layout.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/utility.css' %}">
     <link rel="icon" type="image/png"
         href="https://cdn.discordapp.com/attachments/818087032303517726/1167898978000572557/earth-icon.png">
 
@@ -51,8 +51,10 @@
         {% endif %}
         <div class="content">
             <header class="w-full bg-slate-200">
-                <section class="px-24 py-5 flex justify-between items-center;">
-                    <a href="/" class="flex items-center">LearnPlanit</a>
+                <section class="px-lg py-sm flex justify-between items-center;">
+                    <a href="/" class="flex items-center">
+                        <h1>LearnPlanit</h1>
+                    </a>
                     {% if logged_in %}
                     <span class="flex items-center">Hello, {{ username }}</span>
                     <form method="POST" action="/logout/">
@@ -64,7 +66,7 @@
                     {% endif %}
                 </section>
             </header>
-            <main class="px-24 py-10">
+            <main class="px-lg py-md">
                 {% block world_top_menu %}{% endblock %}
                 {% block market_menu %}{% endblock %}
                 {% block cssguide_top %}{% endblock %}
