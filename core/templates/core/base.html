@@ -16,7 +16,7 @@
     <title>LearnPlanit - {{ title }}</title>
     {% endif %}
 
-    <meta name="viewport" content="width=viewport, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- <style>
         :root {
@@ -41,6 +41,8 @@
 </head>
 
 <style>
+
+
 </style>
 
 <body>
@@ -60,7 +62,7 @@
                 </section>
             </header>
             {% endif %}
-            <main class="main-content px-lg py-md {% if not logged_in %}m-auto{% endif %}">
+            <main class="main-content {% if not logged_in %}m-auto{% endif %}">
                 {% block world_top_menu %}{% endblock %}
                 {% block market_menu %}{% endblock %}
                 {% block cssguide_top %}{% endblock %}

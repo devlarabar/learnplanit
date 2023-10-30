@@ -69,9 +69,8 @@
             {{ comment.comment|safe }}
         </div>
         <div class="comment-footer">
-            <div class="flex gap-1">
+            <div class="comment-date-actions flex gap-1">
                 <span class="date">{{ comment.date_posted }}</span>{% if username == comment.author.username %}
-                <span>|</span>
                 <span class="comment-author-actions"><a href="/lessons/editcomment/{{ comment.id }}/"
                         class="flex gap-half"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke-width="1.5" stroke="currentColor" class="w-1 h-1">
