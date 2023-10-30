@@ -293,6 +293,21 @@ li {
     margin: 1rem;
 }
 
+/* Scrollbar */
+
+::-webkit-scrollbar-track {
+    background-color: #ddd;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: #ddd;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #1D1B22;
+}
+
 /* Media Queries */
 @media screen and (max-width: 678px) {
     .landing-img {
