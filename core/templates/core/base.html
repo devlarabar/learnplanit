@@ -40,6 +40,10 @@
 
 </head>
 
+<style>
+
+</style>
+
 <body>
 
     <div id="container">
@@ -47,23 +51,17 @@
         {% include 'core/navigation.html' %}
         {% endif %}
         <div class="content">
+            {% if not logged_in %}
             <header class="w-full bg-slate-200">
-                <section class="px-lg py-sm flex justify-between items-center;">
+                <section class="main-header-inner px-lg py-sm flex justify-between items-center m-auto">
                     <a href="/" class="flex items-center">
                         <h1>LearnPlanit</h1>
                     </a>
-                    {% if logged_in %}
-                    <span class="flex items-center">Hello, {{ username }}</span>
-                    <form method="POST" action="/logout/">
-                        {% csrf_token %}
-                        <input type="submit" name="button" value="Logout" />
-                    </form>
-                    {% else %}
                     <a href="/login/">Login</a>
-                    {% endif %}
                 </section>
             </header>
-            <main class="px-lg py-md">
+            {% endif %}
+            <main class="main-content px-lg py-md {% if not logged_in %}m-auto{% endif %}">
                 {% block world_top_menu %}{% endblock %}
                 {% block market_menu %}{% endblock %}
                 {% block cssguide_top %}{% endblock %}

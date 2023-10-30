@@ -1,3 +1,5 @@
+/* Variables */
+
 :root {
     --primary: #ddd;
     --border: #ddd;
@@ -10,7 +12,24 @@
     --text-light-hover: #fff;
     --h3-color: #3B3840;
     --font-main: "Arial", "sans-serif";
+    --text-subtle: #555555;
+    --author-bg: #F7E1C3;
 }
+
+/* Fonts */
+
+
+@font-face {
+    font-family: 'Roboto';
+    src: url("../fonts/Roboto-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'Louis George Cafe';
+    src: url("../fonts/louis-george-cafe.ttf") format("truetype");
+}
+
+/* General */
 
 *,
 *:before,
@@ -30,7 +49,11 @@ body {
     font-size: 1.6rem;
     overflow: hidden;
     font-family: var(--font-main);
+    line-height: 2.4rem;
+    font-family: "Louis George Cafe", sans-serif;
 }
+
+/* Main Content */
 
 #container {
     width: 100%;
@@ -45,6 +68,18 @@ body {
     overflow: auto;
     gap: 4rem;
 }
+
+.main-content {
+    width: 100%;
+    max-width: 1000px;
+}
+
+.main-header-inner {
+    width: 100%;
+    max-width: 1000px;
+}
+
+/* Forms */
 
 input[type="text"],
 input[type="select"],
@@ -114,6 +149,51 @@ form {
     list-style-type: disc;
 }
 
+/* Comments */
+
+.lesson-comment {
+    width: 100%;
+    padding: 1rem;
+    border-bottom: 2px solid var(--border);
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.comment-is-author {
+    background-color: #FFF9DA;
+    border-bottom: 2px solid #DBCCAD;
+}
+
+.comment-footer {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+}
+
+.comment-footer a {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.comment-author-actions,
+.comment-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.lesson-op {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+
 /* Typography */
 
 h1 {
@@ -140,6 +220,7 @@ h3 {
     font-size: 2.2rem;
     font-weight: bold;
     color: var(--h3-color);
+    margin: 0.5rem 0;
 }
 
 main a {
@@ -148,12 +229,26 @@ main a {
 }
 
 p {
-    margin: 1rem 0;
+    margin-top: 3rem;
 }
 
 .tags-container {
     font-size: 1.4rem;
 }
+
+hr {
+    border: 0;
+    background: var(--h3-color);
+    height: 3px;
+    border-radius: 100px;
+    margin: 2rem 0;
+    width: 100%;
+}
+
+.date {
+    color: var(--text-subtle);
+}
+
 
 /* Accessibility */
 

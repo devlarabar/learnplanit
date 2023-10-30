@@ -27,10 +27,13 @@ class Lesson(models.Model):
 
 
 class Comment(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
-    content = models.CharField(max_length=2000, blank=True)
+    author = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='author')
+    lesson = models.ForeignKey(
+        Lesson, on_delete=models.CASCADE, related_name='lesson')
+    comment = models.CharField(max_length=2000, blank=True)
     date_posted = models.DateTimeField(default=timezone.now)
+    last_updated = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.id

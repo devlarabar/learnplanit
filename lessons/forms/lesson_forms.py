@@ -49,3 +49,11 @@ class CreateLesson(forms.Form):
         if title_exists.count():
             raise forms.ValidationError("Title already exists.")
         return title
+
+
+class AddComment(forms.Form):
+    comment = forms.CharField(
+        label='Comment',
+        required=True,
+        widget=CKEditorWidget(),
+    )

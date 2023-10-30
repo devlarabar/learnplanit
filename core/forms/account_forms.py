@@ -17,11 +17,13 @@ class CustomSignupForm(forms.Form):
     )
     password1 = forms.CharField(
         label="Password",
-        validators=[alphanumeric_and_symbols]
+        validators=[alphanumeric_and_symbols],
+        widget=forms.PasswordInput()
     )
     password2 = forms.CharField(
         label="Confirm password",
-        validators=[alphanumeric_and_symbols]
+        validators=[alphanumeric_and_symbols],
+        widget=forms.PasswordInput()
     )
     email = forms.EmailField(
         label="Your E-mail Address",

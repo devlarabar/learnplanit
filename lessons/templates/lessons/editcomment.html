@@ -1,0 +1,25 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<head>
+    {{ form.media }}
+</head>
+
+<section>
+    <h2>Edit Comment: {{ lesson.title }}</h2>
+
+    <form action="/lessons/editcomment/{{ comment.id }}/" method="POST">
+        {% csrf_token %}
+        {% for field in form.visible_fields %}
+        <span>{{ field.label_tag }}</span>
+        {{ field }}
+        {% endfor %}
+        <input id="commentButton" type="submit" name="button" value="Update">
+    </form>
+
+</section>
+
+{% endblock content %}

@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
 from django.utils import timezone
 from html_sanitizer import Sanitizer
-from lessons.models import Subject, Lesson
+from lessons.models import Subject, Lesson, Comment
 from django.contrib.auth.decorators import login_required
 import core.helpers.request_helpers as helpers
-from lessons.forms.lesson_forms import AddSubject, CreateLesson
+from lessons.forms.lesson_forms import AddSubject, CreateLesson, AddComment
 from core.helpers.site_constants import html_sanitizer_settings
 
 
@@ -12,7 +12,7 @@ from core.helpers.site_constants import html_sanitizer_settings
 def index(request):
     context = helpers.prepare_context(request)
     context['title'] = 'Blog'
-    lessons = Lesson.objects.all()
+    lessons = Lesson.objects.all().order_by('-date_posted')
     context['lessons'] = lessons
     return render(request, 'lessons/index.html', context=context)
 
@@ -57,7 +57,27 @@ def view_lesson(request, lesson_id):
 
     lesson = Lesson.objects.filter(
         id=lesson_id).select_related('author').first()
+    lesson_comments = Comment.objects.filter(
+        lesson=lesson).order_by('-date_posted')
+
+    sanitized_comments = []
+    for c in lesson_comments:
+        sanitizer = Sanitizer(settings=html_sanitizer_settings)
+        sanitized_comment = sanitizer.sanitize(
+            c.comment).replace('{br}', chr(10))
+        edited = c.date_posted == c.last_updated
+        comment = {
+            "id": c.id,
+            "author": c.author,
+            "comment": sanitized_comment,
+            "date_posted": c.date_posted,
+            "edited": edited
+        }
+        sanitized_comments.append(comment)
+    context['sanitized_comments'] = sanitized_comments
+
     context['lesson'] = lesson
+    context['comment_form'] = AddComment(None)
 
     # VALIDATE HTML
     sanitizer = Sanitizer(settings=html_sanitizer_settings)
@@ -134,3 +154,83 @@ def add_subject(request):
         print(f"Subject created: {name.title()}")
 
     return render(request, 'lessons/addsubject.html', context=context)
+
+
+@login_required(login_url="/login/")
+def add_comment(request, lesson_id):
+    context = helpers.prepare_context(request)
+
+    lesson = Lesson.objects.filter(id=lesson_id)
+
+    if lesson:
+        lesson = lesson.first()
+        comment = request.POST.get('comment')
+
+        new_comment = Comment(
+            lesson=lesson,
+            author=request.user,
+            comment=comment,
+            date_posted=timezone.now()
+        )
+        new_comment.save()
+
+        print(f"{context['username']} posted a comment on {lesson.title}.")
+
+    return redirect(view_lesson, lesson_id=lesson.id)
+
+
+@login_required(login_url="/login/")
+def edit_comment(request, comment_id):
+    context = helpers.prepare_context(request)
+
+    comment = Comment.objects.filter(
+        id=comment_id).select_related('author')
+    if comment:
+        comment = comment.first()
+        context['comment'] = comment
+    else:
+        context['message'] = 'This comment does not exist!'
+        return render(request, 'core/error.html', context=context)
+    if context['username'] != comment.author.username:
+        context['message'] = 'You are not the author of this comment!'
+        return render(request, 'core/error.html', context=context)
+
+    lesson = comment.lesson
+
+    initial_form_data = {
+        'comment': comment.comment,
+    }
+    context['form'] = AddComment(initial=initial_form_data)
+
+    if request.method == 'POST':
+        new_comment = request.POST.get('comment')
+
+        comment.comment = new_comment
+        comment.save()
+        print(f"Comment updated: {comment.id}")
+
+        return redirect(view_lesson, lesson_id=lesson.id)
+
+    return render(request, 'lessons/editcomment.html', context=context)
+
+
+@login_required(login_url="/login/")
+def delete_comment(request, comment_id):
+    context = helpers.prepare_context(request)
+
+    comment = Comment.objects.filter(
+        id=comment_id).select_related('author')
+    if comment:
+        comment = comment.first()
+        context['comment'] = comment
+    else:
+        context['message'] = 'This comment does not exist!'
+        return render(request, 'core/error.html', context=context)
+    if context['username'] != comment.author.username:
+        context['message'] = 'You are not the author of this comment!'
+        return render(request, 'core/error.html', context=context)
+
+    lesson = comment.lesson
+    comment.delete()
+
+    return redirect(view_lesson, lesson_id=lesson.id)
